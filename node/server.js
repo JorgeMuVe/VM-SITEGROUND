@@ -1,6 +1,5 @@
 const express = require('express'), aplicacion = express(); // INICIAR SERVIDOR EXPRESS
 const cors = require('cors');
-const path = require('path');
 const PUERTO = process.env.PORT || 5000;
 
 /* CORS para establecer la SEGURIDAD en la conexión y envio de los datos */
@@ -24,15 +23,6 @@ aplicacion.use('/api/usuario', require('./api/usuario.js'));
 aplicacion.use('/api/pedido', require('./api/pedido.js'));
 aplicacion.use('/api/venta', require('./api/venta.js'));
 
-
-
-
-
-/* APLICACION MEDI-SEDA */
-aplicacion.use(express.static(path.join(__dirname,'aplicacion')));
-aplicacion.get('/app*', function(req,res){
-    res.sendFile(path.join(__dirname,'aplicacion','index.html'));
-});
 
 // Encender el servidor Express/NODEJS - en el PUERTO previamente definido (5000)
 aplicacion.listen(PUERTO, () => { console.log('Servidor escuchando en el Puerto : ' + PUERTO); });

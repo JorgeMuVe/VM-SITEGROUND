@@ -6,6 +6,21 @@ const proveedorDeDatos = require('../db/conexiondb');
 gestorDireccion.post('/lista', async (solicitud, respuesta) => {
     try {
 
+        const { codigoUsuario } = solicitud.body;
+        await proveedorDeDatos.query(`SELECT * FROM direccion WHERE idCliente = ?`,
+        [ codigoUsuario ],
+        (error, resultado) => {
+            if (error) respuesta.json({ error : (error.sqlMessage + " - " + error.sql) }); // Enviar error en JSON
+            else respuesta.send(resultado)
+        })
+        proveedorDeDatos.release();
+    }catch(error){ respuesta.json({ error : error.code }) }  // Enviar error en JSON
+});
+
+/**********  P A G I N A D O   D I R E C C I O N   C L I E N T E   *********/
+gestorDireccion.post('/paginado', async (solicitud, respuesta) => {
+    try {
+
         const { codigoUsuario,inicio,cantidad } = solicitud.body;
         await proveedorDeDatos.query(`SELECT COUNT(*) AS cantidadDirecciones FROM direccion d WHERE d.idCliente = ?`,
         [ codigoUsuario ],
