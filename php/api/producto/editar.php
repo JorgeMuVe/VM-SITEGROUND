@@ -18,20 +18,26 @@
   // Get raw data
   $data = json_decode(file_get_contents("php://input"));
 
-  $producto->tipoProducto = $data->tipoProducto;
+  $producto->idTipoProducto = $data->idTipoProducto;
+  $producto->tipoUnidad = $data->tipoUnidad;
+  $producto->nombreProducto = $data->nombreProducto;
+  $producto->detalleProducto = $data->detalleProducto;
+  $producto->precioPorUnidad = $data->precioPorUnidad;
+  $producto->unidadCantidad = $data->unidadCantidad;
+  $producto->descuentoUnidad = $data->descuentoUnidad;
+  $producto->imagenProducto = $data->imagenProducto;
+  $producto->idProducto = $data->idProducto;
 
   // Buscar Usuario
-  $result = $producto->listarProductoPorTipo();
+  $result = $producto->editarProducto();
 
   // Get row count
   $num = $result->rowCount();
   if($num > 0){
-    $usuarios_arr = array();
     while($row = $result->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
-        array_push($usuarios_arr,$row);
+      extract($row);
+      echo json_encode($row);
     }
-    echo json_encode($usuarios_arr);
   }
   else { echo json_encode(array('error'=>'Sin respuesta')); }
 ?>

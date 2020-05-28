@@ -21,8 +21,8 @@ const fileFilter = (req,file,cb) => {
 
 const upload = multer({storage:guardarImagenProducto})//},limits:{ fileSize: 1024 * 1024 * 5 }, fileFilter:fileFilter});
 
-gestorArchivo.delete('/:url', async (req,res) => {
-    const { url } = req.params;
+gestorArchivo.delete('/eliminar', async (req,res) => {
+    const { url } = req.body;
     try{
         const urlBusqueda = "D:\\PROYECTOS\\VM\\VM-DESAROLLO\\aplicacion\\public\\img\\" + url;
         fs.unlinkSync(urlBusqueda);

@@ -106,7 +106,7 @@
 
                 $stmtBusqueda->execute();
                 return $stmtBusqueda;
-            } else { return null }
+            } else { return null; }
         }
 
         // LISTAR PRODUCTO NEGOCIO
