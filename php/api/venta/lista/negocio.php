@@ -2,9 +2,12 @@
     // Headers
     header('Access-Control-Allow-Origin: *');
     header('Content-Type: application/json');
-    
-    include_once '../../config/Database.php';
-    include_once '../../models/Venta.php';
+    header('Access-Control-Allow-Methods: POST');
+    header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+  
+    include_once '../../../config/Database.php';
+    include_once '../../../models/Venta.php';
+
 
     // Instantiante DB y Connect
     $database = new Database();
@@ -20,18 +23,25 @@
     $venta->inicio = $data->inicio;
     $venta->cantidad = $data->cantidad;
 
-
     // Blog Usuario Query
     $result = $venta->listaNegocio();
-
-    // Get row count
-    $num = $result->rowCount();
-    if($num > 0){
-        $ventas_arr = array();
-        while($row = $result->fetch(PDO::FETCH_ASSOC)){
-            extract($row);
-            array_push($ventas_arr,$row);
-        }
-        echo json_encode($ventas_arr);
-    } else { echo json_encode(array('error'=>'Sin registro de Usuarios!.')); }
+    $respuesta = array();
+    
+    //Get row count
+    $numCantidad = $result[0]->rowCount();
+    if($numCantidad > 0){
+        $cantidadVentas = $result[0]->fetch(PDO::FETCH_ASSOC);
+        $numBusqueda = $result[1]->rowCount();
+        if($numBusqueda > 0){
+            $listaVentas = array();
+            while($row = $result[1]->fetch(PDO::FETCH_ASSOC)){
+                extract($row);
+                array_push($listaVentas,$row);
+            }
+            echo json_encode( array(
+                'cantidadVentas'=>$cantidadVentas["cantidadVentas"],
+                'listaVentas'=>$listaVentas
+            ));
+        } else { echo json_encode(array('error'=>'Sin registro de Ventas!.')); }
+    } else { echo json_encode(array('error'=>'Sin registro de ventas!.')); }
 ?>

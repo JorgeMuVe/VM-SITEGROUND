@@ -2,15 +2,15 @@
     class Database {
         // DB Paramas
 
-        private $host = '127.0.0.1';
-        private $db_name = 'vm';
-        private $username = 'root';
-        private $password = '';
+        //private $host = '127.0.0.1';
+        //private $db_name = 'vm';
+        //private $username = 'root';
+        //private $password = 'worldconnect';
 
-        //private $host = '35.209.157.186';
-        //private $db_name = 'dbbt84b9hvuq64';
-        //private $username = 'uxvremg7qnx4t';
-        //private $password = 'Worldconnect2020';
+        private $host = '35.209.157.186';
+        private $db_name = 'dbc9vkbmvcc2cx';
+        private $username = 'u3yut93z9uwr5';
+        private $password = 'Worldconnect2020';
         private $conn;
 
         // DB Connect

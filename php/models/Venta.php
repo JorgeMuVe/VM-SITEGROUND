@@ -43,14 +43,13 @@
                 $stmtBusqueda->bindParam(':cantidad', $this->cantidad);
 
                 $stmtBusqueda->execute();
-                
-                var $respuesta = {
-                    "cantidad":$stmtCantidad,
-                    "busqueda":$stmtBusqueda
-                }
+
+                $respuesta = array();
+                array_push($respuesta,$stmtCantidad);
+                array_push($respuesta,$stmtBusqueda);
                 
                 return $respuesta;
-            } else { return null }
+            } else { return null; }
         }
 
 
