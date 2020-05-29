@@ -16,7 +16,7 @@ gestorUsuario.post('/ingresar', async (solicitud, respuesta) => {
             if (error)
             respuesta.json({ error : (error.sqlMessage + " - " + error.sql) }); // Enviar error en JSON
             else
-            respuesta.send(resultado[0]); // Enviar resultado de consulta en JSON
+            respuesta.send(resultado[0][0]); // Enviar resultado de consulta en JSON
         })
 
         proveedorDeDatos.release();
