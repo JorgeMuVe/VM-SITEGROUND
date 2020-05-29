@@ -2,7 +2,7 @@ module.exports = {
     baseDeDatos:{
         host : '127.0.0.1',
         user : 'root',
-        password : '',
+        password : 'worldconnect',
         database : 'vm'
     },
     baseDeDatos_:{

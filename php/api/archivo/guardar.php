@@ -1,6 +1,6 @@
 <?php
   $response = array();
-  if(is_uploaded_file($_FILES["user_image"]){ 
+  if(is_uploaded_file($_FILES["user_image"])){ 
     $tmp_file = $_FILES["user_image"]["tmp_name"];
     $img_name = $_FILES["user_image"]["name"];
     $upload_dir = "./images/".$img_name;
